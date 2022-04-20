@@ -1,5 +1,5 @@
 
-## <div align="center"><a href="https://xiaoxiaochenxu.top">YOLOv5-v6.0-RetinaNet-MultiClass<br></a></div>
+## <div align="center"><a href="https://xiaoxiaochenxu.top">YOLOv5-v6.0-RetinaNet-MultiLabel<br></a></div>
 ## <div align="center">Author：<a href="https://github.com/Code-keys/yolov5-6.0-RetinaNet-MultiClass">Code-keys<br></a></div>
 
 <details open>
