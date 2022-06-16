@@ -1,0 +1,16 @@
+./datasets/MergedLabels/images/000000.jpeg
+./datasets/MergedLabels/images/000001.jpeg
+./datasets/MergedLabels/images/000002.jpeg
+./datasets/MergedLabels/images/000003.jpeg
+./datasets/MergedLabels/images/000004.jpeg
+./datasets/MergedLabels/images/000005.jpeg
+./datasets/MergedLabels/images/000006.jpeg
+./datasets/MergedLabels/images/000007.jpeg
+./datasets/MergedLabels/images/000008.jpeg
+./datasets/MergedLabels/images/000009.jpeg
+./datasets/MergedLabels/images/000010.jpeg
+./datasets/MergedLabels/images/000011.jpeg
+./datasets/MergedLabels/images/000012.jpeg
+./datasets/MergedLabels/images/000013.jpeg
+./datasets/MergedLabels/images/000014.jpeg
+./datasets/MergedLabels/images/000015.jpeg

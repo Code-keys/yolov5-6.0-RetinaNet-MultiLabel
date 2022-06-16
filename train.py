@@ -32,7 +32,7 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
-import val_16 as val# for end-of-epoch mAP
+import val_merged as val# for end-of-epoch mAP
 from models.experimental import attempt_load
 from models.yolo import Model
 from utils.autoanchor import check_anchors
@@ -440,7 +440,7 @@ def parse_opt(known=False):
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', type=str, default='', help='initial weights path')
     parser.add_argument('--cfg', type=str, default='/home/gy/NSD/yolov5-6.0/outputs/yolov5s.yaml', help='model.yaml path')
-    parser.add_argument('--data', type=str, default='/home/gy/NSD/yolov5-6.0/Rship.yaml', help='dataset.yaml path')
+    parser.add_argument('--data', type=str, default='datasets/MultiLabels/Multiple.yaml', help='dataset.yaml path')
     parser.add_argument('--hyp', type=str, default="/home/gy/NSD/yolov5-6.0/outputs/yolov5s/hyp.scratch.yaml", help='hyperparameters path')
     parser.add_argument('--epochs', type=int, default=200)
     parser.add_argument('--batch-size', type=int, default=8, help='total batch size for all GPUs')

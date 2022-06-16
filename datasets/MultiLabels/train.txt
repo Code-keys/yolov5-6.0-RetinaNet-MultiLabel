@@ -1,0 +1,16 @@
+./datasets/MultiLabels/images/000000.jpeg
+./datasets/MultiLabels/images/000001.jpeg
+./datasets/MultiLabels/images/000002.jpeg
+./datasets/MultiLabels/images/000003.jpeg
+./datasets/MultiLabels/images/000004.jpeg
+./datasets/MultiLabels/images/000005.jpeg
+./datasets/MultiLabels/images/000006.jpeg
+./datasets/MultiLabels/images/000007.jpeg
+./datasets/MultiLabels/images/000008.jpeg
+./datasets/MultiLabels/images/000009.jpeg
+./datasets/MultiLabels/images/000010.jpeg
+./datasets/MultiLabels/images/000011.jpeg
+./datasets/MultiLabels/images/000012.jpeg
+./datasets/MultiLabels/images/000013.jpeg
+./datasets/MultiLabels/images/000014.jpeg
+./datasets/MultiLabels/images/000015.jpeg

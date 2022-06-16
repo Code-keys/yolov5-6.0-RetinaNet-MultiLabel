@@ -11,6 +11,13 @@ multiLabel-detection：  a bbox contain two or more classes-Info ,such as contai
 </details>
 
 
+<details open>
+<summary>Write before</summary>
+
+	Merge the Labels to one can complete your task ( class of M ✖️ N )
+
+</details>
+
 
 ## <div align="center">Quick Start Examples</div>
 
@@ -31,24 +38,14 @@ $ pip install -r requirements.txt
 </details>
 
 <details open>
-<summary>datasets-train</summary>
+<summary>VOC datasets-prepare </summary>
+Put at the datasets folder{ images/ 、Annotations/ } 
 
-The Datasets-Annotations should be initialized as follows： 
+The Annotations should be initialized as follows：
 
 	<object>
-		<name>cat</name>
-		<sex>male</sex>
-		<bndbox>
-			<xmin>590</xmin>
-			<ymin>119</ymin>
-			<xmax>1896</xmax>
-			<ymax>1017</ymax>
-		</bndbox>
-	</object>	
-
-    <object>
-		<name>dog</name>
-		<sex>female</sex>
+		<name>WarShip</name>
+		<direction>0</direction>
 		<bndbox>
 			<xmin>590</xmin>
 			<ymin>119</ymin>
@@ -57,78 +54,83 @@ The Datasets-Annotations should be initialized as follows：
 		</bndbox>
 	</object>
 
+    <object>
+		<name>ConmmonShip</name>
+		<direction>7</direction>
+		<bndbox>
+			<xmin>590</xmin>
+			<ymin>119</ymin>
+			<xmax>1896</xmax>
+			<ymax>1017</ymax>
+		</bndbox>
+	</object>
 
-The Datasets-labels can be code as follows ( like yolo-format )： 
+    <object>
+		<name>WarShip</name>
+		<direction>4</direction>
+		<bndbox>
+			<xmin>590</xmin>
+			<ymin>119</ymin>
+			<xmax>1896</xmax>
+			<ymax>1017</ymax>
+		</bndbox>
+	</object> 
+	 
 
-    ...
-    sex =  obj.find('sex').text  
-    sex = int( all_sexes.index(sex) )  
-    cls = obj.find('name').text
-    cls_name_id = int( all_classes.index(cls) )   
-    xmlbox = obj.find('bndbox')
-    xywh = convert_box((w, h), [float(xmlbox.find(x).text) for x in ('xmin', 'xmax', 'ymin', 'ymax')])  
-    out_file.write(" ".join([str(a) for a in (cls_name_id ,*xywh, sex)]) + '\n')
+Then split the datasets:
+``` bash
+	cd datasets/
+	mkdir MergedLabels && ln -s images MergedLabels/images
+	mkdir MultiLabels && ln -s images MultiLabels/images
+	
+	python ../split-datasets.py  
+```
 
-labels/000000.txt ： \<class-id> \<x-center> \<y-center> \<w> \<h> \<sex-id>：
+<details open>
+<summary>datasets-convert-for-train</summary>
 
-    0 0.255859375 0.6736111111111112 0.13046875 0.47500000000000003 1
-    2 0.361328125 0.6777777777777778 0.11484375000000001 0.4305555555555556 0
-    3 0.432421875 0.6895833333333333 0.08203125 0.37083333333333335 1
-    1 0.6957031250000001 0.7152777777777778 0.12578125 0.35833333333333334 0
+\<class-id> \<x-center> \<y-center> \<w> \<h> \<other-label-id>：
 
+The labels can be converted as follows ( append a tail behind the yolo-format-line )： 
 
+``` bash
+	cd datasets/MergedLabels && mkdir labels
+	vim ../voc2myYOLO.py ( Define something ) && python ../voc2myYOLO.py
+```
+MultiLabels/labels/000000.txt ：  
+``` bash
+    0 0.255859375 0.6736111111111112 0.13046875 0.47500000000000003 0
+    1 0.361328125 0.6777777777777778 0.11484375000000001 0.430555555 3
+    1 0.361328125 0.6777777777777778 0.11484375000000001 0.430555555 2
+    0 0.432421875 0.6895833333333333 0.08203125 0.37083333333333335 5
+    1 0.6957031250000001 0.7152777777777778 0.12578125 0.35833333333333334 7 
+```  
 </details>
 
 <details open>
-<summary>datasets-val</summary>
+<summary>datasets-for-val&test</summary>
+  
+// merged-class-id : tree children-node
+ 
+\<merged-class-id> \<x-center> \<y-center> \<w> \<h> ：
 
-The Datasets-Annotations should be initialized as follows： 
+The images && the datasets-split must be same to corresponding the train-datasets 
 
-	<object>
-		<name>cat</name>
-		<sex>male</sex>
-		<bndbox>
-			<xmin>590</xmin>
-			<ymin>119</ymin>
-			<xmax>1896</xmax>
-			<ymax>1017</ymax>
-		</bndbox>
-	</object>	
+The Datasets-labels can be convert as following
+``` bash
+	cd datasets/MergedLabels && mkdir labels
+	vim ../voc2myYOLO.py ( Define something ) && python ../voc2myYOLO.py
+```
+MergedLabels/labels/000000.txt ： 
 
-    <object>
-		<name>dog</name>
-		<sex>female</sex>
-		<bndbox>
-			<xmin>590</xmin>
-			<ymin>119</ymin>
-			<xmax>1896</xmax>
-			<ymax>1017</ymax>
-		</bndbox>
-	</object>
-
-
-The Datasets-labels can be code as follows ( like yolo-format )： 
-
-    ...
-    sex =  obj.find('sex').text  
-    sex = int( all_sexes.index(sex) )  
-    cls = obj.find('name').text
-    cls_name_id = int( all_classes.index(cls) )   
-
-    new_cls_id = all_sexes.__len__() * cls_name_id + sex    ###    ####  2*cls+sex
-
-    xmlbox = obj.find('bndbox')
-    xywh = convert_box((w, h), [float(xmlbox.find(x).text) for x in ('xmin', 'xmax', 'ymin', 'ymax')])  
-    out_file.write(" ".join([str(a) for a in (new_cls_id ,*xywh, sex)]) + '\n') 
-
-labels/000000.txt ： \<new-class-id> \<x-center> \<y-center> \<w> \<h> ：
-
-    1 0.255859375 0.6736111111111112 0.13046875 0.47500000000000003 
+    0 0.255859375 0.6736111111111112 0.13046875 0.47500000000000003 
     4 0.361328125 0.6777777777777778 0.11484375000000001 0.4305555555555556  
-    7 0.432421875 0.6895833333333333 0.08203125 0.37083333333333335  
-    2 0.6957031250000001 0.7152777777777778 0.12578125 0.35833333333333334  
+    11 0.432421875 0.6895833333333333 0.08203125 0.37083333333333335  
+    15 0.6957031250000001 0.7152777777777778 0.12578125 0.35833333333333334  
+    6 0.6957031250000001 0.7152777777777778 0.12578125 0.35833333333333334  
  
 </details>
+
 
 <details open>
 <summary>train</summary> 
@@ -136,14 +138,14 @@ Train with ours YOLOv5
 
 ```python 
 # datasets.yaml
-train: /home/xxx/xxx/dateset/train.txt #  train-format :  yolo-format append a sex-id
+train: /home/xxx/xxx/dateset/train.txt #  train-format :  yolo-format append a other-id
 val: /home/xxx/xxx/dateset/eval.txt  #  val-format : new_cls_id 交叉乘积结果
 test: /home/xxx/xxx/dateset/test.txt  # val-format 
 ``` 
 train：
 ```sh 
 xxx@xxx:~/xxx/yolov5-6.0$  export Use_Double_Head=1
-xxx@xxx:~/xxx/yolov5-6.0$  python train.py --cfg outputs/yolov5s.yaml --data datasets.yaml 
+xxx@xxx:~/xxx/yolov5-6.0$  python train.py --cfg outputs/yolov5s.yaml --data datasets.yaml
 ``` 
 </details>
 
@@ -162,6 +164,61 @@ key codes modified as follows:
 val：
 ```python
 xxx@xxx:~/xxx/yolov5-6.0$  export Use_Double_Head=1
-xxx@xxx:~/xxx/yolov5-6.0$  python val_16.py --weights outputs/yolov5s/weights/best.pt --data datasets.yaml 
+xxx@xxx:~/xxx/yolov5-6.0$  python val_merged.py --weights outputs/yolov5s/weights/best.pt --data your-datasets.yaml
 ```
+</details>
+
+
+<details open>
+<summary>FootStep of Project-Modify</summary> 
+
+###  Abstract
+
+1.	数据集 划分 split   train.txt   et al     -> mergedLabel/images   -> MultiLabels/images 
+2.	标签转换     MultiLabels 型(仅用于 train)  +  mergedLabel型 (仅用于 eval-test)
+3.	datasets.py：
+
+	verify_image_label(args): ->  assert ...
+
+	class LoadImagesAndLabels ->  __getitem__ ↓
+
+	torch.zeros((nl, 7))  # datasets：Label-format  ( bs class  x y w h other   )
+
+5.	yolo.py 
+	
+	Detect : 双头：nc nc1 ；适配
+
+6.	val-merged.py
+		输出转换后 与 merged 类进行对比:
+
+        # re-assign by class  ( using multiply direct )
+        out_val = torch.cat( [ out[..., 0:5] ,out[..., 7:], out[..., 7:] ] , dim=-1 )
+        out_val[:, :, 5:13 ] *= (out[:, :, 5:6].repeat(1, 1, 8) )
+        out_val[:, :, 13: ]  *= (out[:, :, 6:7].repeat(1, 1, 8) )
+
+7.	Loss.py ->	ComputeLoss  
+	
+	\#  added BCEcls   
+	\#  Define criteria     
+	\#  added  a BCEWithLogitsLoss      
+	\#  added a FocalLoss ( better ) Focal loss  : FocalLoss(BCEdeg, g)  
+
+	\#  \_\_call__  modify as the lcls  
+	Classification &&  other  同
+	t = torch.full_like(ps[:, self.nc+5: ], self.cn, device=device) 
+						t[range(n), tdeg[i]] = self.cp
+						ldeg += self.BCEdeg(ps[:, self.nc+5: ], t)  # BCE 
+
+	
+	\# Loss: build_targets  
+
+</details>
+
+
+<details open>
+<summary> Thanks </summary> 
+ 
+ 	@ yolov5 for base
+	@ deast@hdu.edu.cn for labelling
+ 
 </details>

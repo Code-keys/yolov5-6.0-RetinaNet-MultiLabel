@@ -1,0 +1,13 @@
+
+# train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
+train: dateset/MergedLabels/train.txt #   images 
+val:   dateset/MergedLabels/trainval.txt  #   images
+test:  dateset/MergedLabels/test.txt  #   images
+
+
+# number of classes
+nc: 16
+
+# class names
+names: ["WarShip_135", "WarShip_90",  "WarShip-45", "WarShip_00",  "WarShip_45", "WarShip_90",  "WarShip_135", "WarShip_180", 
+        "CommonShip_135",  "CommonShip_90" , "CommonShip_45",  "CommonShip_00" , "CommonShip_45",  "CommonShip_90" , "CommonShip_135",  "CommonShip_180" ]

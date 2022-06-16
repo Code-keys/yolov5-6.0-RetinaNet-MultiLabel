@@ -1,0 +1,10 @@
+./datasets/MultiLabels/images/000021.jpeg
+./datasets/MultiLabels/images/000022.jpeg
+./datasets/MultiLabels/images/000023.jpeg
+./datasets/MultiLabels/images/000024.jpeg
+./datasets/MultiLabels/images/000025.jpeg
+./datasets/MultiLabels/images/000026.jpeg
+./datasets/MultiLabels/images/000027.jpeg
+./datasets/MultiLabels/images/000028.jpeg
+./datasets/MultiLabels/images/000029.jpeg
+./datasets/MultiLabels/images/000030.jpeg

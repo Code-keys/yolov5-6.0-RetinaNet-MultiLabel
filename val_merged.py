@@ -309,7 +309,7 @@ def run(data,
 
 def parse_opt():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data', type=str, default= "/home/gy/NSD/yolov5-6.1/dateset/Rship.yaml" , help='dataset.yaml path')
+    parser.add_argument('--data', type=str, default= "datasets/MergedLabels/Merged.yaml" , help='dataset.yaml path')
     parser.add_argument('--weights',  type=str, default='', help='model.pt path(s)')
     parser.add_argument('--batch-size', type=int, default=32, help='batch size')
     parser.add_argument('--imgsz', '--img', '--img-size', type=int, default=640, help='inference size (pixels)')

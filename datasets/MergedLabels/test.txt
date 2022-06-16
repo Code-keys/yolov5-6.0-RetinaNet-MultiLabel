@@ -1,0 +1,10 @@
+./datasets/MergedLabels/images/000021.jpeg
+./datasets/MergedLabels/images/000022.jpeg
+./datasets/MergedLabels/images/000023.jpeg
+./datasets/MergedLabels/images/000024.jpeg
+./datasets/MergedLabels/images/000025.jpeg
+./datasets/MergedLabels/images/000026.jpeg
+./datasets/MergedLabels/images/000027.jpeg
+./datasets/MergedLabels/images/000028.jpeg
+./datasets/MergedLabels/images/000029.jpeg
+./datasets/MergedLabels/images/000030.jpeg
