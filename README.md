@@ -119,7 +119,7 @@ The images && the datasets-split must be same to corresponding the train-dataset
 The Datasets-labels can be convert as following
 ``` bash
 	cd datasets/MergedLabels && mkdir labels
-	vim ../voc2myYOLO.py ( Define something ) && python ../voc2myYOLO.py
+	vim ../voc2YOLO.py ( Define something ) && python ../voc2YOLO.py
 ```
 MergedLabels/labels/000000.txt ： 
 
@@ -139,7 +139,7 @@ Train with ours YOLOv5
 ```python 
 # datasets.yaml
 train: /home/xxx/xxx/dateset/train.txt #  train-format :  yolo-format append a other-id
-val: /home/xxx/xxx/dateset/eval.txt  #  val-format : new_cls_id 交叉乘积结果
+val: /home/xxx/xxx/dateset/eval.txt  #  val-format : new_cls_id 交叉组合结果
 test: /home/xxx/xxx/dateset/test.txt  # val-format 
 ``` 
 train：
