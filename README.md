@@ -5,7 +5,7 @@
 <details open>
 <summary>Introduction</summary>
 <p>
-This project :  yolov5-6.0-RetinaNet-MultiClass 🚀 is a project based on <a href="https://github.com/ultralytics/yolov5">Ultralytics yolov5-v6.0 </a> for detection-framework for multiLabel-detection： <br>
+This project :  yolov5-6.0-RetinaNet-MultiLabel 🚀 is a project based on <a href="https://github.com/ultralytics/yolov5">Ultralytics yolov5-v6.0 </a> for detection-framework for multiLabel-detection： <br>
 multiLabel-detection：  a bbox contain two or more classes-Info ,such as contain a classname and a degree <br>
 </p>
 </details>
@@ -14,7 +14,7 @@ multiLabel-detection：  a bbox contain two or more classes-Info ,such as contai
 <details open>
 <summary>Write before</summary>
 
-	Merge the Labels to one can complete your task ( class of M ✖️ N )
+	Merge the Labels to one can also complete your task ( class of M ✖️ N )
 
 </details>
 
@@ -219,6 +219,6 @@ xxx@xxx:~/xxx/yolov5-6.0$  python val_merged.py --weights outputs/yolov5s/weight
 <summary> Thanks </summary> 
  
  	@ yolov5 for base
-	@ deast@hdu.edu.cn for labelling
+	@ deast@hdu.edu.cn for the data&labels
  
 </details>
